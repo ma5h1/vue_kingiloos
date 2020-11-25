@@ -21,7 +21,10 @@
       <button class ="sisend1" v-on:click="addParticipant()">Lisa osaleja</button>
     </p1>
     <table align="center">
-      <tr v-for="participant in event.participants">
+      <tr v-for="(participant, index) in event.participants">
+        <td>
+          {{index + 1}}
+        </td>
         <td>
           <input class ="sisend1" v-model="participant.name" type="string" placeholder="Sisesta osaleja nimi">
         </td>
