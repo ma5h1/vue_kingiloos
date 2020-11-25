@@ -14,13 +14,9 @@ button {
     margin: 8px 0;
     box-sizing: border-box;
 }
-
-.sisend1 {
-    position: relative;
-    width: 20%;
+table {
+    width: 50%;
     padding: 12px 20px;
-    margin: 8px 8px;
     box-sizing: border-box;
-
-
 }
+
