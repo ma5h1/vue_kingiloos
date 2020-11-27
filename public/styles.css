@@ -1,8 +1,9 @@
 button {
-    background-color:#42b983;
-    color: #2c3e50;
+    background-color:mediumslateblue;
+    color: lightgreen;
     width: 50%;
     text-kashida-space: true;
+    border-radius: 12px;
     .button:hover;
     padding: 12px 20px;
     margin: 8px 0;
@@ -18,5 +19,27 @@ table {
     width: 50%;
     padding: 12px 20px;
     box-sizing: border-box;
+}
+.deletebutton {
+    background-color: red;
+    color: lightgreen;
+    width: 80%;
+    padding: 12px 20px;
+    margin: 10px 0;
+    box-sizing: border-box;
+}
+h1 {
+    color: mediumvioletred;
+    font-family: "Colonna MT";
+    font-weight: 2000;
+    font-size: 40px;
+
+}
+input {
+    border-radius: 12px;
+}
+
+select {
+    border-radius: 12px;
 }
 

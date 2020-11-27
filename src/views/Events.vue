@@ -1,25 +1,25 @@
 <template>
   <div class="event">
-    <h1>Tere tulemast kingiloosi veebilehele!</h1>
-    <h1>Siin saad luua enda ürituse jaoks kinkide loosi.</h1>
+    <h1>On KINGILOOSI aeg!</h1>
+    <h1>Siin saad luua enda sündmuse jaoks kinkide loosi.</h1>
     <p>
       <select v-model="event.eventLanguage"  id="event_language">
-        <option disabled value="">Vali ürituse keel</option>
+        <option disabled value="">Vali sündmuse keel</option>
         <option>Eesti</option>
         <option>English</option>
         <option>Русский</option>
       </select>
     </p>
     <p>
-      <label for="event_date">Ürituse kuupäev</label><br>
+      <label for="event_date" style="color: rebeccapurple">Sündmuse kuupäev</label><br>
       <input class ="sisend" id="event_date" v-model="event.eventDate" type="date">
     </p>
     <p>
-      <input class ="sisend" v-model="event.eventLocation" type="text" placeholder="Sisesta ürituse asukoht">
+      <input class ="sisend" v-model="event.eventLocation" type="text" placeholder="Sisesta sündmuse asukoht">
     </p>
-    <p1>
+    <p>
       <button class ="sisend1" v-on:click="addParticipant()">Lisa osaleja</button>
-    </p1>
+    </p>
     <table align="center">
       <tr v-for="(participant, index) in event.participants">
         <td>
@@ -39,13 +39,16 @@
             <option>Русский</option>
           </select>
         </td>
+        <td>
+          <button class="deletebutton" v-on:click = "deleteRow()">Kustuta</button>
+        </td>
       </tr>
     </table>
     <p>
     <input class ="checkbox" type="checkbox" id="checkbox">
-    <label for="checkbox">Jah, mul on luba kasutada kingiloosi jaoks osaleja(te) e-posti aadresse</label>
+    <label for="checkbox" style="color: red">Jah, mul on luba kasutada kingiloosi jaoks osaleja(te) e-posti aadresse</label>
     </p>
-    <button v-on:click="createEvent()">Loo üritus!</button>
+    <button v-on:click="createEvent()">Loo sündmus!</button>
     <br><br><br>
 
   </div>
@@ -71,12 +74,16 @@ let createEventFunction = function () {
       .then(this.showResponse)
   //teine variant teha: .then (response=>this.message=response.data);
 }
+let deleteRow = function (index){
+this.event.participants.splice(index,1);
+}
 
 export default {
   methods: {
     addParticipant:addParticipantFunction,
     createEvent:createEventFunction,
-    showResponse:showResponse
+    showResponse:showResponse,
+    deleteRow
   },
   data: function () {
     return {

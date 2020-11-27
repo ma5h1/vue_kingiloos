@@ -1,8 +1,10 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
+      <router-link to="/">Home</router-link>
+      |
+      <router-link to="/about">About</router-link>
+      |
       <router-link to="/events">Events</router-link>
     </div>
     <router-view/>
@@ -29,5 +31,9 @@
 
 #nav a.router-link-exact-active {
   color: #42b983;
+}
+
+body {
+  background-image: url("https://cdn.hipwallpaper.com/i/84/78/OLkAoY.jpg")
 }
 </style>
