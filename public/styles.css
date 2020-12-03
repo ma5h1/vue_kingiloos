@@ -23,13 +23,13 @@ table {
 .deletebutton {
     background-color: red;
     color: lightgreen;
-    width: 80%;
+    width: 100%;
     padding: 12px 20px;
     margin: 10px 0;
     box-sizing: border-box;
 }
 h1 {
-    color: mediumvioletred;
+    color: mediumslateblue;
     font-family: "Colonna MT";
     font-weight: 2000;
     font-size: 40px;
@@ -38,6 +38,7 @@ h1 {
 input {
     border-radius: 12px;
 }
+
 
 select {
     border-radius: 12px;

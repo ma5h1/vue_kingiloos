@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Events from '../views/Events.vue'
+import Wishlist from '../views/Wishlist.vue'
 
 Vue.use(VueRouter)
 
@@ -25,6 +26,11 @@ const routes = [
     path: '/events',
     name: 'Events',
     component: Events
+  },
+  {
+    path: '/wishlist/:code',
+    name: 'Wishlist',
+    component: Wishlist
   },
 ]
 

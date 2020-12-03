@@ -50,7 +50,7 @@
       <label for="checkbox" style="color: red">Jah, mul on luba kasutada kingiloosi jaoks osaleja(te) e-posti
         aadresse</label>
       <input class="checkbox" type="checkbox" id="checkbox" value="1" v-model="submitButtonActive"/>
-
+      <br>
       <button id="submit_button" v-on:click="createEvent()" :disabled="!submitButtonActive">Loo sündmus!</button>
       <br><br><br>
     </div>
