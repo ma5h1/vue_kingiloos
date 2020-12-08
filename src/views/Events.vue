@@ -1,9 +1,9 @@
-<template xmlns="http://www.w3.org/1999/html">
+<template xmlns:width="http://www.w3.org/1999/xhtml" xmlns:word-break="http://www.w3.org/1999/xhtml">
   <form class="event">
     <h1>On KINGILOOSI aeg!</h1>
     <h1>Siin saad luua enda sündmuse jaoks kinkide loosi.</h1>
     <p>
-      <select v-model="event.eventLanguage" id="event_language" required>
+      <select class="sisend" v-model="event.eventLanguage" id="event_language" required>
         <option disabled value="">Sündmuse keel</option>
         <option>Eesti</option>
         <option>English</option>
@@ -11,37 +11,35 @@
       </select>
     </p>
     <p>
-      <label for="event_date" style="color: black">Sündmuse kuupäev</label><br>
-      <input class="sisend" id="event_date" v-model="event.eventDate" type="date" required>
+      <input class="sisend" id="event_date" v-model="event.eventDate" type="text" onfocus="(this.type='date')"
+             onblur="(this.type='text')" placeholder="Sündmuse kuupäev" required>
     </p>
     <p>
       <input class="sisend" v-model="event.eventLocation" type="text" placeholder="Sündmuse asukoht" required>
     </p>
     <p>
-      <input class="sisend" v-model="event.eventAmount" type="number" min="0" placeholder="Kingituse hinna limiit eurodes" required>
+      <input class="sisend" v-model="event.eventAmount" type="number" min="0"
+             placeholder="Kingituse hinna limiit eurodes" required>
       <!-- <b>EUR</b> -->
     </p>
-
-
-      <button class="sisend2" v-on:click="addParticipant()">Lisa osaleja</button>
-      <button class="sisend2" v-on:click="isHidden = !isHidden">Lisa osalejad failist</button>
-
-
-
+    <button class="sisend2" v-on:click="addParticipant()">Lisa osaleja</button>
+    <button class="sisend2" v-on:click="isHidden = !isHidden">Lisa osalejad failist</button>
     <table align="center">
       <tr v-for="(participant, index) in event.participants">
         <td>
+        <b>
           {{ index + 1 }}
+        </b>
         </td>
         <td>
           <input class="sisend1" v-model="participant.name" type="string" placeholder="Osaleja nimi" required>
         </td>
         <td>
-          <input class="sisend1" v-model="participant.email" type="email" placeholder="Osaleja email" required>
           <span v-if="validateEmail(participant.email)">Invalid</span>
+          <input class="sisend1" v-model="participant.email" type="email" placeholder="Osaleja email" required>
         </td>
         <td>
-          <select v-model="participant.participantLanguage">
+          <select class="sisend1" v-model="participant.participantLanguage">
             <option disabled value="">Osaleja keel</option>
             <option>Eesti</option>
             <option>English</option>
@@ -55,26 +53,33 @@
     </table>
     <div v-if="!isHidden">
       <!--UPLOAD-->
-      <h5>Lisage oma sündmusele mitu osalejat korraga. Laadige alla meie <a rel="noopener noreferrer" href="https://drive.google.com/file/d/1TtQcKhONQSlGZHRw_GbaLuvTmbDrDRg_/view?usp=sharing" target="_blank">CSV näidis-fail</a> ja lisage kõikide osalejate nimed, e-maili aadressid ja keeled, keda soovite sündmusele kutsuda.
-        Kui fail valmis, saate lohistada selle allolevale väljale ja Teie sõbrad või kolleegid lisatakse sündmusele kiiresti ja hõlpsalt.</h5>
-      <form enctype="multipart/form-data" novalidate v-if="true">
+      <h5 id="peal">Lisage oma sündmusele mitu osalejat korraga. Laadige alla meie <a rel="noopener noreferrer"
+                                                                                      href="https://drive.google.com/file/d/1TtQcKhONQSlGZHRw_GbaLuvTmbDrDRg_/view?usp=sharing"
+                                                                                      target="_blank">
+        CSV näidis-fail</a>
+        ja lisage kõikide osalejate nimed, e-maili aadressid ja keeled, keda soovite sündmusele kutsuda.
+        Kui fail valmis, saate laadida selle allolevast nupust ja Teie sõbrad või kolleegid lisatakse sündmusele
+        kiiresti ja korraga.</h5>
+      <form enctype="multipart/form-data">
         <div>
-          <input type="file" multiple :name="uploadFieldName" :disabled="isSaving" @change="filesChange($event.target.name, $event.target.files); fileCount = $event.target.files.length"
-                 accept="text/csv/*" class="input-file">
+          <label for="csv" id="labell">Lae fail</label>
+          <input type="file" multiple :name="uploadFieldName" :disabled="isSaving"
+                 @change="filesChange($event.target.name, $event.target.files); fileCount = $event.target.files.length"
+                 accept="text/csv/*" id="csv">
           <p v-if="isInitial">
             Lohista osalejate fail siia<br> või kliki manustamiseks
           </p>
           <p v-if="isSaving">
-            Laeme {{ fileCount }} faile...
+            Laeme {{ fileCount }} faili...
           </p>
         </div>
         <!--SUCCESS-->
         <div v-if="isSuccess">
-          <h2>Success</h2>
+          <h5>Üleslaadimine õnnestus</h5>
         </div>
         <!--FAILED-->
         <div v-if="isFailed">
-          <h2>Upload failed.</h2>
+          <h5>Üleslaadimine ebaõnnestus</h5>
           <p>
             <a href="javascript:void(0)" @click="reset()">Try again</a>
           </p>
@@ -86,11 +91,14 @@
       <input class="personaalne" v-model="event.personalText" type="text" placeholder="Personaalne sõnum">
     </p>
     <div>
-      <label for="checkbox" style="color: black; font-weight: bold " >Jah, mul on luba kasutada kingiloosi jaoks osaleja(te) e-posti
+      <label for="checkbox" style="color: black; font-weight: bold ">Jah, mul on luba kasutada kingiloosi jaoks
+        osaleja(te) e-posti
         aadresse</label>
       <input class="checkbox" type="checkbox" id="checkbox" value="1" v-model="submitButtonActive"/>
       <br>
-      <button class="sisend2" id="submit_button" v-on:click="createEvent()" :disabled="!submitButtonActive">Loo sündmus!</button>
+      <button class="sisend2" id="submit_button" v-on:click="createEvent()" :disabled="!submitButtonActive">Loo
+        sündmus!
+      </button>
       <br><br><br>
     </div>
   </form>
@@ -121,7 +129,7 @@ let deleteRow = function (index) {
   this.event.participants.splice(index, 1);
 }
 
-import { upload } from './file-upload.service';
+import {upload} from './file-upload.service';
 
 const STATUS_INITIAL = 0, STATUS_SAVING = 1, STATUS_SUCCESS = 2, STATUS_FAILED = 3;
 
