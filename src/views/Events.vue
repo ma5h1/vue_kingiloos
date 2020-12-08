@@ -87,13 +87,11 @@
         </div>
       </form>
     </div>
-    <p>
-      <input class="personaalne" v-model="event.personalText" type="text" placeholder="Personaalne sõnum">
-    </p>
+      <textarea class="personaalne" v-model="event.personalText" type="text" placeholder="Personaalne sõnum">
+      </textarea>
     <div>
       <label for="checkbox" style="color: black; font-weight: bold ">Jah, mul on luba kasutada kingiloosi jaoks
-        osaleja(te) e-posti
-        aadresse</label>
+        osalejate e-posti aadresse</label>
       <input class="checkbox" type="checkbox" id="checkbox" value="1" v-model="submitButtonActive"/>
       <br>
       <button class="sisend2" id="submit_button" v-on:click="createEvent()" :disabled="!submitButtonActive">Loo
