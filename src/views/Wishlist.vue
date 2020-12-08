@@ -1,24 +1,34 @@
 <template>
-  <div class="about">
+  <div>
     <h1>Siin saad vihjata päkapikule, mida Sulle võiks kinkida :)</h1>
     <p>
-      <label for="wishlist" style="color: rebeccapurple">Kingisoov(id)</label><br>
-      <input class="sisend" id="wishlist" type="text">
+      <label for="wishlist" style="color: black">Kingisoov(id)</label><br>
+      <input class="w" id="wishlist" type="text" v-model="participant.wishlist">
     </p>
+    <br>
+    <button id="sendwish" v-on:click="sendWish()">Saada kingisoov!</button>
+    <br><br><br>
   </div>
 </template>
 
 <script>
+let sendWishFunction = function () {
+  let url = "http://localhost:8080/wishlist"
+
+  this.participant.uuid = this.$route.params.code;
+  this.$http.post(url, this.participant)
+  alert("Aitäh! Kingisoov saadetud :)")
+  //teine variant teha: .then (response=>this.message=response.data);
+}
+
 export default {
   methods: {
+    sendWish: sendWishFunction
   },
   data: function () {
     return {
-
+      participant: {}
     }
-  },
-  created() {
-    alert(this.$route.params.code);
   }
 }
 </script>
