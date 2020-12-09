@@ -9,19 +9,12 @@
         <option>English</option>
         <option>Русский</option>
       </select>
-    </p>
-    <p>
       <input class="sisend" id="event_date" v-model="event.eventDate" type="text" onfocus="(this.type='date')"
-             onblur="(this.type='text')" placeholder="Sündmuse kuupäev" required>
-    </p>
-    <p>
+             onblur="(this.type='text')" placeholder="Sündmuse kuupäev" required><br><br>
       <input class="sisend" v-model="event.eventLocation" type="text" placeholder="Sündmuse asukoht" required>
-    </p>
-    <p>
       <input class="sisend" v-model="event.eventAmount" type="number" min="0"
-             placeholder="Kingituse hinna limiit eurodes" required>
+             placeholder="Kingituse hinna limiit eurodes" required><br><br>
       <!-- <b>EUR</b> -->
-    </p>
     <button class="sisend2" v-on:click="addParticipant()">Lisa osaleja</button>
     <button class="sisend2" v-on:click="isHidden = !isHidden">Lisa osalejad failist</button>
     <table align="center">
@@ -87,6 +80,7 @@
         </div>
       </form>
     </div>
+    <br>
       <textarea class="personaalne" v-model="event.personalText" type="text" placeholder="Personaalne sõnum">
       </textarea>
     <div>
