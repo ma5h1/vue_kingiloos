@@ -1,9 +1,9 @@
 <template>
   <div>
-    <h1>Siin saad vihjata päkapikule, mida Sulle võiks kinkida :)</h1>
+    <h1>Siin saad vihjata päkapikule anonüümselt, mida Sulle võiks kinkida :)</h1>
     <p>
       <label for="wishlist" style="color: black">Kingisoov(id)</label><br>
-      <input class="w" id="wishlist" type="text" v-model="participant.wishlist">
+      <textarea class="personaalne" id="wishlist" type="text" v-model="participant.wishlist"></textarea>
     </p>
     <br>
     <button id="sendwish" v-on:click="sendWish()">Saada kingisoov!</button>
