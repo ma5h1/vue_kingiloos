@@ -104,3 +104,21 @@ span {
     z-index: -1;
 }
 
+#sendwish {
+    background-color:white;
+    color: black;
+    width: 20%;
+    text-kashida-space: true;
+    border-radius: 12px;
+    padding: 12px 20px;
+    margin: 8px 2px;
+    box-sizing: border-box;
+    transition-duration: 0.2s;
+    cursor: pointer;
+}
+
+#sendwish:hover:enabled {
+    background-color: #4CAF50;
+    color: white;
+}
+

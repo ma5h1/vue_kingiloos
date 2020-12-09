@@ -2,11 +2,9 @@
   <div>
     <h1>Siin saad vihjata päkapikule anonüümselt, mida Sulle võiks kinkida :)</h1>
     <p>
-      <label for="wishlist" style="color: black">Kingisoov(id)</label><br>
-      <textarea class="personaalne" id="wishlist" type="text" v-model="participant.wishlist"></textarea>
+      <textarea class="personaalne" id="wishlist" type="text" v-model="participant.wishlist" placeholder="Sinu kingisoov(id)"></textarea>
     </p>
-    <br>
-    <button id="sendwish" v-on:click="sendWish()">Saada kingisoov!</button>
+    <button id="sendwish" v-on:click="sendWish()">Saada kingisoov(id)!</button>
     <br><br><br>
   </div>
 </template>
